@@ -1,0 +1,172 @@
+.login-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    margin: 10px 0;
+  }
+
+  .button-group{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  button {
+    width: 212px;
+    margin: 2px 25px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .password{
+    display: flex;
+    align-items: center;
+  }
+
+  .password input{
+    width: 195px;
+  }
+  
+  
+  .login-button {
+    background-color: #3485c3;
+    color: #fff;
+  }
+  
+  .register-button {
+    background-color: #3485c3;
+    color: #fff;
+  }
+
+  .login-button:hover, .register-button:hover{
+    background-color: #2f75aa;
+  }
+
+  .login-button:disabled{
+    background-color: rgba($color: #3485c3, $alpha: 0.7);
+    cursor: not-allowed;
+  }
+
+  input.ng-invalid.ng-touched {
+    border: red 1px solid;
+}
+
+small{
+  text-decoration: underline;
+  display: block;
+  width: 212px;
+}
+
+.error{
+  color: red;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 0.5%;
+  left: 0.5%;
+}
+
+.main-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hidden-buttons {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.button-container.active .hidden-buttons {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sub-button {
+  height: 50px;
+  background-color: #3485c3;
+  color: white;
+  padding: 0px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.5s;
+  display: flex;
+  align-items: center;
+}
+
+.sub-button:hover{
+  background-color: #2f75aa;
+}
+.sub-button p{
+  margin: 0px 5px;
+}
+.sub-button img{
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: 1px solid whitesmoke;
+}
+
+.button-container.active .sub-button {
+  transform: translateY(-370px);
+}
+
+.zoom, .zomm .login-form{
+  animation: fadeInAnimation 1.0s ease forwards, sizeChangeAnimation 2s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sizeChangeAnimation {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button-container{
+  animation: fadeInAnimation 1s ease forwards,
+}

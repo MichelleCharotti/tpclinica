@@ -1,0 +1,47 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+p{
+    font-size: 28px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.gestionar{
+    width: auto;
+    margin: 2px 0px;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #3485c3;
+    color: #fff;
+}
+
+.gestionar:hover{
+    background-color: #2f75aa;
+}
+
+.detalles{
+    border: 2px solid whitesmoke;
+    padding: 5px 10px;
+}
+
+:host, :host *{
+    animation: slideInAnimation 1s ease forwards;
+  }
+  
+  @keyframes slideInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }

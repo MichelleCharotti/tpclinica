@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-sm bg-body-tertiary ">
+    <div class="container ">
+        <a class="navbar-brand" routerLink="/">
+            <img src="../../../assets/favicon.png" alt="">
+            Clinica On-Line
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <!-- <li class="nav-item" *ngIf="tipoUsuario == 'admin'">
+                    <a class="nav-link active" routerLink="/detalle-usuario">Usuarios</a>
+                </li> -->
+                <li class="nav-item" *ngIf="tipoUsuario != undefined"> 
+                     <a class="nav-link active text-danger" (click)="cerrarSesion()">Cerrar Sesion</a> 
+                </li> 
+            </ul> 
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,35 @@
+<span class="zoom">
+    <form class="login-form" [formGroup]="formularioLogin" >
+        <h3>Login</h3>
+        <div class="form-group">
+            <label for="nombre">Usuario</label>
+            <input type="text" id="email" placeholder="Ingrese usuario" formControlName="email">
+            <small class="error" *ngIf="formularioLogin.get('email')?.touched && !formularioLogin.get('email')?.valid"> 
+                Debe Ingresar Un Mail Valido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <div class="password">
+                <input appMostrarPassword type="password" id="password" placeholder="Ingrese contraseña" formControlName="password">
+            </div>
+            <small class="error" *ngIf="formularioLogin.get('password')?.touched && !formularioLogin.get('password')?.valid"> 
+                Al Menos 16 Caracteres
+            </small>
+        </div>
+        <div class="button-group">
+            <button class="login-button" [disabled]="!formularioLogin.valid" (click)="logear()">Login</button>
+            <button class="register-button" (click)="registro()">Registrarse</button>
+            <button class="sub-button"  (click)="completarAdmin()" >Acceso Administrador</button>
+            <!-- <button class="sub-button"  (click)="completarEspecialista()" >Acceso Especialista</button> -->
+            <button class="sub-button"  (click)="completarPaciente()" >Acceso Paciente</button>
+        </div>
+        <strong class="error" *ngIf="error != ''">
+            {{error}}
+        </strong>
+    </form>
+
+</span>
+<app-loading *ngIf="validando" [mensaje]="'Validando'"></app-loading>
+
+
