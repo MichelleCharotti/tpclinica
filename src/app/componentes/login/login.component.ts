@@ -18,6 +18,7 @@ export class LoginComponent {
   public formularioLogin: FormGroup;
   public validando: boolean = false;
   public error: string = "";
+
  
 
   constructor(private router: Router, private usuario: UsuarioService, private auth: Auth,private db: BaseDatosService) {
@@ -46,7 +47,7 @@ export class LoginComponent {
             }
             else{
               this.db.generarLog(this.usuario.datos);
-              this.router.navigate(["perfil"]);
+              this.router.navigate(["/perfil"]);
             }
           })  
         }
@@ -87,9 +88,26 @@ completarEspecialista(){
   this.formularioLogin.get('email')?.setValue("michel_1@hotmail.com.ar");
   this.formularioLogin.get('password')?.setValue("medicomedicomedico");
 }
+
+completarEspecialista2(){
+  this.formularioLogin.get('email')?.setValue("hivawim430@aqqor.com");
+  this.formularioLogin.get('password')?.setValue("hivawim430@aqqor.com");
+}
+
 completarPaciente(){
   this.formularioLogin.get('email')?.setValue("informmc01@gmail.com");
   this.formularioLogin.get('password')?.setValue("pacientepaciente");
 }
+completarPaciente2(){
+  this.formularioLogin.get('email')?.setValue("bodas76110@opposir.com");
+  this.formularioLogin.get('password')?.setValue("bodas76110@opposir.com");
+}
+
+completarPaciente3(){
+  this.formularioLogin.get('email')?.setValue("deyicok435@gianes.com");
+  this.formularioLogin.get('password')?.setValue("deyicok435@gianes.com");
+}
+
+
 
 }

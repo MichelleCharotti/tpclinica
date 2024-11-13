@@ -8,7 +8,7 @@ import { UsuarioService } from '../../servicios/usuario.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,RouterModule,RouterLinkActive,CommonModule],
+  imports: [RouterLink,RouterModule,CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -22,7 +22,7 @@ export class HeaderComponent {
 
   cerrarSesion(){
     this.usuario.cerrarSesion();
-    this.router.navigate(["home"]);
+    this.router.navigate(["/home"]);
   }
 
 }

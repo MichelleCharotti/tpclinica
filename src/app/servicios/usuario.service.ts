@@ -44,4 +44,11 @@ export class UsuarioService {
     }
   }
 
+  actualizarHorarios(){
+    if(this.datos?.tipo == "especialista" && this.datos.horarios){
+      return this.db.actualizarHorarios(this.datos.id, this.datos.horarios);
+    }
+    throw new Error("no es especialista");
+  }
+  
 }

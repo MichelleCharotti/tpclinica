@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
 import { ListaEspecialidadesComponent } from "./lista-especialidades/lista-especialidades.component";
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { LoadingComponent } from "../loading/loading.component";
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkActive, CommonModule, FormsModule, ReactiveFormsModule,
+  imports: [ RouterLink, RouterModule, CommonModule, FormsModule, ReactiveFormsModule,
     ListaEspecialidadesComponent, NgxCaptchaModule, LoadingComponent],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'

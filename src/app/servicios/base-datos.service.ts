@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { collection, collectionData, doc, docSnapshots, DocumentSnapshot, Firestore, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { map, Observable } from 'rxjs';
-import { Usuario } from '../interfaces/usuario';
+import { Horario, Usuario } from '../interfaces/usuario';
 import { Especialidad } from '../interfaces/especialidad';
 import { Log } from '../interfaces/log';
+import { Estado, HistoriaClinica, Turno } from '../interfaces/turno';
 
 
 @Injectable({
@@ -118,5 +119,79 @@ export class BaseDatosService {
     const q = query(coleccion, orderBy("fecha", "asc"));
     return collectionData(q, {idField: 'id'}) as Observable<Log[]>;
   }
+
+  actualizarHorarios(id: string, nuevoHorario: Horario[]){
+    const documento = doc(this.firestore, "usuarios", id);
+    return updateDoc(documento, {horarios: nuevoHorario});
+  }
+
+  obtenerTurnosAdmin(){
+    const coleccion = collection(this.firestore, "turnos");
+    return collectionData(coleccion, {idField: 'id'}) as Observable<Turno[]>;
+  }
+
+  obtenerTurnosPaciente(id: string){
+    const now = new Date();
+    const coleccion = collection(this.firestore, "turnos");
+    const q = query(coleccion, where("idPaciente", "==", id));
+    return collectionData(q, {idField: 'id'}) as Observable<Turno[]>;
+  }
+
+  obtenerTurnosEspecialista(id: string){
+    const coleccion = collection(this.firestore, "turnos");
+    const q = query(coleccion, where("idEspecialista", "==", id));
+    return collectionData(q, {idField: 'id'}) as Observable<Turno[]>;
+  }
+
+  agregarTurno(paciente: Usuario, especialista: Usuario, especialidad: string, fecha: Date){
+    const coleccion = collection(this.firestore, "turnos");
+    const documentoNuevo = doc(coleccion);
+    const nuevoId = documentoNuevo.id;
+    const duracion = especialista.horarios?.find(d => d.especialidad === especialidad);
+
+    setDoc(documentoNuevo, {
+      id: nuevoId,
+      idPaciente: paciente.id,
+      nombrePaciente: paciente.nombre + " " + paciente.apellido,
+      dniPaciente: paciente.dni,
+      idEspecialista: especialista.id,
+      nombreEspecialista: especialista.nombre + " " + especialista.apellido,
+      tipo: especialidad,
+      fecha: fecha.toUTCString(),
+      duracion: duracion?.tiempo,
+      estado: Estado.pendiente
+    });
+  }
+
+  actualizarEstadoTurno(turno: Turno, nuevoEstado: Estado){
+    const documento = doc(this.firestore, "turnos", turno.id);
+    return updateDoc(documento, {estado: nuevoEstado});
+}
+
+agregarMensajeCancelacionTurno(turno: Turno, mensaje: string){
+  const documento = doc(this.firestore, "turnos", turno.id);
+  return updateDoc(documento, {mensajeCancelacion: mensaje});
+}
+
+agregarMensajeEncuestaTurno(turno: Turno, mensaje: string){
+  const documento = doc(this.firestore, "turnos", turno.id);
+  return updateDoc(documento, {encuesta: mensaje});
+}
+
+agregarMensajeReseniaTurno(turno: Turno, mensaje: string){
+  const documento = doc(this.firestore, "turnos", turno.id);
+  return updateDoc(documento, {resenia: mensaje});
+}
+
+agregarMensajeCalificacionTurno(turno: Turno, mensaje: string){
+  const documento = doc(this.firestore, "turnos", turno.id);
+  return updateDoc(documento, {calificacion: mensaje});
+}
+
+
+agregarHistoriaClinica(turno: Turno, historia: HistoriaClinica){
+  const documento = doc(this.firestore, "turnos", turno.id);
+  return updateDoc(documento, {historiaClinica: historia});
+}
 
 }

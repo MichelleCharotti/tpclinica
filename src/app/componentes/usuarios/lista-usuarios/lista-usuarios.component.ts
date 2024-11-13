@@ -8,7 +8,7 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 @Component({
   selector: 'app-lista-usuarios',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkActive, CommonModule],
+  imports: [ RouterModule, CommonModule],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.scss'
 })

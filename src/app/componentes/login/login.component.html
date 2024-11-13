@@ -18,11 +18,35 @@
             </small>
         </div>
         <div class="button-group">
-            <button class="login-button" [disabled]="!formularioLogin.valid" (click)="logear()">Login</button>
-            <button class="register-button" (click)="registro()">Registrarse</button>
-            <button class="sub-button"  (click)="completarAdmin()" >Acceso Administrador</button>
-            <!-- <button class="sub-button"  (click)="completarEspecialista()" >Acceso Especialista</button> -->
-            <button class="sub-button"  (click)="completarPaciente()" >Acceso Paciente</button>
+            <button class="botones login-button" [disabled]="!formularioLogin.valid" (click)="logear()">Login</button>
+            <button class="botones register-button" (click)="registro()">Registrarse</button>
+        </div>    
+        <div class="button-group-sub">
+               <button class="sub-button"  (click)="completarAdmin()" >
+               <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FHRlkxFpahqZyEVdLrjReQUBmEBR2-1?alt=media&token=b0be51be-4e73-4b54-85a6-b4fe3c438c98">
+              <p>Admin</p> 
+            </button>
+               <button class="sub-button"  (click)="completarEspecialista()" >
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FIpN92CIzRsQJ3G6erLcHYOJ3DjG3-1?alt=media&token=a69ea650-e3cf-469b-9ed3-bd1c1406466c">
+              <p>Espe1</p>
+               </button>
+               <button class="sub-button"  (click)="completarEspecialista2()" >
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FIpN92CIzRsQJ3G6erLcHYOJ3DjG3-1?alt=media&token=a69ea650-e3cf-469b-9ed3-bd1c1406466c">
+              <p>Espe2</p>
+               </button>
+               <button class="sub-button"  (click)="completarPaciente()" >
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2Fr1lihwD6qkhQXRyvzPkBhXIxjel2-2?alt=media&token=9b6d5157-7e2e-4343-94c3-7f9917e11006">
+              <p>Paciente1</p>  
+               </button>
+               <button class="sub-button"  (click)="completarPaciente2()" >
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FjC6CLERNPvgyeYs3si8fkw6EnAV2-1?alt=media&token=ca1957cc-36b1-4bb5-95fd-5e213b9075c5">
+              <p>Paciente2</p>  
+               </button>
+               <button class="sub-button"  (click)="completarPaciente3()" >
+                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FAaRtxBYJH4doNCugkVtSTlcHCPs2-1?alt=media&token=d3df0b3b-c831-46fb-96e4-4df653ecec78">
+              <p>Paciente3</p>  
+               </button>
+               
         </div>
         <strong class="error" *ngIf="error != ''">
             {{error}}

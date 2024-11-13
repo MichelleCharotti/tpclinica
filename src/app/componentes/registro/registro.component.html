@@ -1,3 +1,4 @@
+
 <span class="zoom">
     <form class="login-form" [formGroup]="formularioRegistro">
         <div class="carta-animacion-contenedor">
@@ -126,7 +127,7 @@
                     <div class="button-group">
                         <button class="register-button" routerLink="/registro" [disabled]="!formularioRegistro.valid || (tipo == 'especialista' && especialidades.length == 0)" (click)="generarUsuario()">Registrarse</button>
                     </div>
-                    <ngx-recaptcha2 *ngIf="tipo != ''" [siteKey]="'6Ld8-n8mAAAAAMyuuh2Ccwlf0x24IbiCTfLFP63a'" formControlName="recaptcha"></ngx-recaptcha2>
+                    <ngx-recaptcha2 *ngIf="tipo != ''" [siteKey]="'6LfAV3gqAAAAAIhOMBnmuly_HpzcG-8JrGc8lqbz'" formControlName="recaptcha"></ngx-recaptcha2>
                 </div>
             </div>
         </div>
@@ -139,3 +140,5 @@
         <button (click)="finalizarRegistro()">Ok</button>
     </div>
 </div>
+
+

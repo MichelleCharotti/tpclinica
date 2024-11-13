@@ -4,23 +4,25 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 import { Usuario } from '../../../interfaces/usuario';
 import { BaseDatosService } from '../../../servicios/base-datos.service';
 import { UsuarioService } from '../../../servicios/usuario.service';
+import { DniFormatoPipe } from '../../../pipe/dni-formato.pipe';
+import { ListaUsuariosComponent } from '../lista-usuarios/lista-usuarios.component';
+import { Estado, Turno } from '../../../interfaces/turno';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-detalle-usuario',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkActive, CommonModule],
+  imports: [ RouterModule, CommonModule, DniFormatoPipe],
   templateUrl: './detalle-usuario.component.html',
   styleUrl: './detalle-usuario.component.scss'
 })
 export class DetalleUsuarioComponent {
   
-
-
   private _usuario?: Usuario;
   public cargando: boolean = false;
   public mensajeEstadoEspecialista = "";
 
-
+  @Output() mostrarHistoria = new EventEmitter<Usuario>();
 
   constructor(private db: BaseDatosService, private permisos: UsuarioService) {}
 
@@ -100,4 +102,66 @@ export class DetalleUsuarioComponent {
     }
   }
 
+  mostrarHistoriaClinica(){
+    this.mostrarHistoria.emit(this._usuario);
+  }
+
+  descargarDatosTurnos(){
+    if(this._usuario){
+      this.cargando = true;
+      const nombre = "turnos-" + this.dni;
+      let sub = this.db.obtenerTurnosPaciente(this._usuario.id).subscribe(turnos=>{
+        const datosFormateados = this.formatearDatos(turnos);
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosFormateados);
+        const workbook: XLSX.WorkBook = { Sheets: { [nombre]: worksheet }, SheetNames: [nombre] };
+        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        this.generarArchivoExcel(excelBuffer, `${nombre}.xlsx`);
+        this.cargando = false;
+        sub.unsubscribe();
+      })
+    }
+  }
+
+  private formatearDatos(lista: Turno[]) {
+    return lista.map((turno) => ({
+      id: turno.id,
+      tipo: turno.tipo,
+      fecha: new Date(new Date(turno.fecha).getTime() - 3 * 60 * 60 * 1000).toISOString(),
+      duracion: turno.duracion,
+      estado: Estado[turno.estado],
+      idPaciente: turno.idPaciente,
+      nombrePaciente: turno.nombrePaciente,
+      dniPaciente: turno.dniPaciente,
+      idEspecialista: turno.idEspecialista,
+      nombreEspecialista: turno.nombreEspecialista,
+      reseña: turno.resenia,
+      encuesta: turno.encuesta,
+      calificacion: turno.calificacion,
+      mensajeCancelacion: turno.mensajeCancelacion,
+      altura: turno.historiaClinica?.altura,
+      peso: turno.historiaClinica?.peso,
+      temperatura: turno.historiaClinica?.temperatura,
+      presionMin: turno.historiaClinica?.presionMin,
+      presionMax: turno.historiaClinica?.presionMax,
+      clave1: turno.historiaClinica?.dato1?.clave,
+      valor1: turno.historiaClinica?.dato1?.valor,
+      clave2: turno.historiaClinica?.dato2?.clave,
+      valor2: turno.historiaClinica?.dato2?.valor,
+      clave3: turno.historiaClinica?.dato3?.clave,
+      valor3: turno.historiaClinica?.dato3?.valor
+    }));
+  }
+
+  private generarArchivoExcel(buffer: any, nombre: string): void {
+    const data: Blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+    const link: HTMLAnchorElement = document.createElement('a');
+    link.href = window.URL.createObjectURL(data);
+    link.download = nombre;
+    link.click();
+
+    setTimeout(() => {
+      window.URL.revokeObjectURL(link.href);
+    }, 100);
+  }
 }

@@ -8,15 +8,22 @@ import { DetalleUsuarioComponent } from "../usuarios/detalle-usuario/detalle-usu
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkActive, CommonModule, FormsModule, DetalleUsuarioComponent],
+  imports: [ RouterModule, CommonModule, FormsModule, DetalleUsuarioComponent],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
 export class PerfilComponent {
-  constructor(private usuario: UsuarioService) { }
+  constructor(private usuario: UsuarioService, private router: Router) { }
 
   get datos(){
     return this.usuario.datos;
   }
 
+  enviarAGestionarHorarios(){
+    this.router.navigate(["gestionar-horarios"]);
+  }
+
+  enviarAHistoriaClinica(){
+    this.router.navigate(["historia-clinica"]);
+  }
 }

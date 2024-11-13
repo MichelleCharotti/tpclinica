@@ -1,0 +1,24 @@
+<button *ngIf="pacienteSeleccionado" class="top-boton" (click)="volver()">Volver</button>
+<div *ngIf="!pacienteSeleccionado" class="titulo">
+    <h4>Pacientes</h4>
+    <div class="opciones">
+        <button *ngFor="let item of pacientes" 
+            (click)="seleccionarPaciente(item)" 
+            [ngClass]="{activo: pacienteSeleccionado == item}"
+            >
+            <p>{{item.nombre}}</p>
+            <p>{{item.dni}}</p>
+            <p>Turnos Previos:</p>
+            <p class="soft">{{item.fecha1 | date : 'd/M HH:mm' : "-0300"}}</p>
+            <p class="soft">{{item.tipo1}}</p>
+            <p *ngIf="item.fecha2">---------------</p>
+            <p class="soft">{{item.fecha2 | date : 'd/M HH:mm' : "-0300"}}</p>
+            <p class="soft">{{item.tipo2}}</p>
+            <p *ngIf="item.fecha3">---------------</p>
+            <p class="soft">{{item.fecha3 | date : 'd/M HH:mm' : "-0300"}}</p>
+            <p class="soft">{{item.tipo3}}</p>
+        </button>
+    </div>
+</div>
+<h2 *ngIf="pacienteSeleccionado">Historia Clinica de {{pacienteSeleccionado.nombre}}</h2>
+<app-historia-clinica *ngIf="pacienteSeleccionado" [especialista]="especialista" [paciente]="pacienteSeleccionado"></app-historia-clinica>
