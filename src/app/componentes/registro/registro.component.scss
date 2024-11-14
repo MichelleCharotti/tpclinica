@@ -121,6 +121,7 @@ small{
   width: 100vw;
   height: 100vh;
   background-color: rgba($color: #3485c3, $alpha: 0.2);
+
 }
 
 .mensaje{
@@ -159,6 +160,7 @@ small{
   margin: 0rem 2rem 2rem 0rem;
   height: 88vh;
   width: 90vw;
+  
 }
 
 .carta-animacion{
@@ -186,8 +188,8 @@ small{
   backface-visibility: hidden;
 
   border: none;
-  border-radius: 100px;
-  
+  border-radius: 100%;
+
 }
 
 .carta-animacion-frente{
@@ -201,6 +203,7 @@ small{
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+
 
 }
 
@@ -216,7 +219,7 @@ small{
   font-weight: bolder;
 
   // border: none;
-  border-radius: 100px;
+  border-radius: 100%;
 }
 
 .carta-animacion-dorso button:hover{
