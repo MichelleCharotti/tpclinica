@@ -110,7 +110,8 @@ export class SolicitarTurnoComponent {
   const turnosDisponibles = [];
   if(horario){
     const diaActual = new Date();
-    diaActual.setHours(3, 0, 0, 1);
+    diaActual.setHours(0, 0, 0, 1);
+    // diaActual.setHours(3, 0, 0, 1);
 
     const nombreDias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
     
@@ -122,10 +123,12 @@ export class SolicitarTurnoComponent {
       
       if (dia && dia.estado) {
         const inicioHora = new Date(diaActual);
-        inicioHora.setHours(dia.inicio+3, 0, 0, 0);
+        // inicioHora.setHours(dia.inicio+3, 0, 0, 0);
+        inicioHora.setHours(dia.inicio+0, 0, 0, 0);
   
         const finHora = new Date(diaActual);
-        finHora.setHours(dia.fin+3, 0, 0, 0);
+        // finHora.setHours(dia.fin+3, 0, 0, 0);
+        finHora.setHours(dia.fin+0, 0, 0, 0);
         finHora.setMinutes(finHora.getMinutes() - horario.tiempo);
 
         let horaActual = new Date(inicioHora);

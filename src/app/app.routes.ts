@@ -70,4 +70,8 @@ export const routes: Routes = [
         // component:EspecialistaComponent, 
         loadComponent: () => import('./componentes/historia-clinica/especialista/especialista.component').then(m => m.EspecialistaComponent)
     },
+    { 
+        path: "estadisticas",
+        loadComponent: () => import('./componentes/estadisticas/estadisticas.component').then(m => m.EstadisticasComponent)
+    },
 ];

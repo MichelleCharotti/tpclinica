@@ -23,8 +23,7 @@
                 <p *ngIf="tipoUser != 'especialista'">{{turno.nombreEspecialista}}</p>
                 <p>{{turno.tipo}}</p>
                 <p>{{turno.fecha | date: 'd/MM HH:mm' : "-0300"}}</p>
-                <!-- <p class="estado" [colorEstado]="turno.estado"> -->
-                <p class="estado" >
+                <p class="estado" [colorEstado]="turno.estado">
                     {{turno.estado | estadoTurno}}
                 </p>
                 <div class="botones-estado">

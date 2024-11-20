@@ -1,5 +1,5 @@
 <span class="zoom">
-    <form class="login-form" [formGroup]="formularioLogin" >
+    <form class="login-form" [formGroup]="formularioLogin">
         <h3>Login</h3>
         <div class="form-group">
             <label for="nombre">Usuario</label>
@@ -8,7 +8,7 @@
                 Debe Ingresar Un Mail Valido
             </small>
         </div>
-        <div class="form-group">
+        <div class="form-group" >
             <label for="password">Contraseña</label>
             <div class="password">
                 <input appMostrarPassword type="password" id="password" placeholder="Ingrese contraseña" formControlName="password">
@@ -21,7 +21,7 @@
             <button class="botones login-button" [disabled]="!formularioLogin.valid" (click)="logear()">Login</button>
             <button class="botones register-button" (click)="registro()">Registrarse</button>
         </div>    
-        <div class="button-group-sub">
+        <div class="button-group-sub" >
                <button class="sub-button"  (click)="completarAdmin()" >
                <img src="https://firebasestorage.googleapis.com/v0/b/tpclinica-1ac34.appspot.com/o/imagenes%2FHRlkxFpahqZyEVdLrjReQUBmEBR2-1?alt=media&token=b0be51be-4e73-4b54-85a6-b4fe3c438c98">
               <p>Admin</p> 

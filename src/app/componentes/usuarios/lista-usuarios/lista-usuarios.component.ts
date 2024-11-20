@@ -4,11 +4,12 @@ import { Subscription } from 'rxjs';
 import { BaseDatosService } from '../../../servicios/base-datos.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { ClickAfueraDirective } from '../../../directiva/click-afuera.directive';
 
 @Component({
   selector: 'app-lista-usuarios',
   standalone: true,
-  imports: [ RouterModule, CommonModule],
+  imports: [ RouterModule, CommonModule, ClickAfueraDirective],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.scss'
 })
@@ -19,7 +20,13 @@ export class ListaUsuariosComponent {
   public usuarios: Array<Usuario> = [];
   private subToUsuarios?: Subscription;
 
+  public mostrandoBotones: boolean = false;
+
   constructor(private db: BaseDatosService) {}
+
+  mostrarBotones(){
+    this.mostrandoBotones = !this.mostrandoBotones;
+  }
 
   ngOnInit() {
     this.subToUsuarios = this.db.obtenerUsuarios().subscribe(datos=>{

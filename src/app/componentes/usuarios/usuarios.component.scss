@@ -13,6 +13,7 @@
 
 app-lista-usuarios{
     width: 100%;
+    align-items: center;
 }
 
 .izquierda{
@@ -21,9 +22,9 @@ app-lista-usuarios{
     align-items: center;
     border: 1px solid whitesmoke;
     padding: 10px;
-    width: 58%;
+    width: 28%;
     height: 90%;
-    border-radius: 25px;
+    // border-radius: 25px;
 }
 
 button{

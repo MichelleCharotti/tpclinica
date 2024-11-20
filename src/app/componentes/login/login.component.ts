@@ -6,11 +6,14 @@ import { Auth, sendEmailVerification, signInWithEmailAndPassword } from '@angula
 import { BaseDatosService } from '../../servicios/base-datos.service';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from "../loading/loading.component";
+import { MostrarPasswordDirective } from '../../directiva/mostrar-password.directive';
+import { ClickAfueraDirective } from '../../directiva/click-afuera.directive';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkActive, CommonModule, FormsModule, ReactiveFormsModule, LoadingComponent],
+  imports: [  CommonModule, FormsModule, ReactiveFormsModule, LoadingComponent,
+    MostrarPasswordDirective,ClickAfueraDirective],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

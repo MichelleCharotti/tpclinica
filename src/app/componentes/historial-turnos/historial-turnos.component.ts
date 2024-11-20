@@ -9,11 +9,12 @@ import { BaseDatosService } from '../../servicios/base-datos.service';
 import { EstadoTurnoPipe } from '../../pipe/estado-turno.pipe';
 import { DniFormatoPipe } from '../../pipe/dni-formato.pipe';
 import { GenerarHistoriaClinicaComponent } from "./generar-historia-clinica/generar-historia-clinica.component";
+import { ColorEstadoDirective } from '../../directiva/color-estado.directive';
 
 @Component({
   selector: 'app-historial-turnos',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, EstadoTurnoPipe, DniFormatoPipe, GenerarHistoriaClinicaComponent],
+  imports: [RouterModule, CommonModule, FormsModule, EstadoTurnoPipe, DniFormatoPipe, GenerarHistoriaClinicaComponent,ColorEstadoDirective],
   templateUrl: './historial-turnos.component.html',
   styleUrl: './historial-turnos.component.scss',
   providers:[EstadoTurnoPipe]

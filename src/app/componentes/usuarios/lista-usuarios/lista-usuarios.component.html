@@ -1,14 +1,25 @@
-<div>
-    <p class="tipo">Tipo</p>
-    <p class="dni">DNI</p>
-    <p class="nombre">Nombre</p>
-    <p class="apellido">Apellido</p>
+<!-- <div> -->
+    <!-- <p class="tipo">Tipo</p>
+    <p class="dni">DNI</p> -->
+    <!-- <p class="nombre">Nombre</p>
+    <p class="apellido">Apellido</p> -->
+<!-- </div> -->
+
+<div appClickAfuera (cliclAfueraEvent)="mostrarBotones()" [condicionExtra]="mostrandoBotones" class="button-container" [ngClass]="{'active': mostrandoBotones}">
+    <button class="main-button" (click)="mostrarBotones()">USUARIOS</button>
+    <div class="hidden-buttons">
+   
+    <button class="sub-button" *ngFor="let item of usuarios" (click)="seleccionarUsuario(item)" [ngClass]="{visible: mostrandoBotones}" [disabled]="!mostrandoBotones" >
+    <!-- <p class="tipo">{{item.tipo}}</p>
+    <p class="dni">{{item.dni}}</p> -->
+    <div  *ngIf="item.imagen1">
+        <img [src]="item.imagen1" alt="foto perfil">
+    </div>
+    <p>{{item.nombre}} &nbsp;</p>
+    <p>{{item.apellido}}</p>      
+    </button>
+
 </div>
-<button *ngFor="let item of usuarios" (click)="seleccionarUsuario(item)">
-    <p class="tipo">{{item.tipo}}</p>
-    <p class="dni">{{item.dni}}</p>
-    <p class="nombre">{{item.nombre}}</p>
-    <p class="apellido">{{item.apellido}}</p>
-</button>
+</div>
 
 
