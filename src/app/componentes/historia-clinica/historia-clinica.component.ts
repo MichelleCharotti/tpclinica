@@ -10,7 +10,7 @@ import { BaseDatosService } from '../../servicios/base-datos.service';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { HttpClient } from '@angular/common/http';
 import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 
 // (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
@@ -105,73 +105,74 @@ export class HistoriaClinicaComponent {
     this.filtrarPorEspecialidad(this.especialidadSeleccionada);
   }
 
-  // descargarHistoria(){
-  //   const cardItems = this.turnos.map((item) => {
-  //     const cardContent = [];
+  descargarHistoria(){
+    const cardItems = this.turnos.map((item) => {
+      const cardContent = [];
       
-  //     cardContent.push({ text: `Fecha: ${this.datePipe.transform(item.fecha, 'd/M HH:mm', '-0300')}`, style: 'card' });
-  //     cardContent.push({ text: `Especialista: ${item.nombreEspecialista}`, style: 'card' });
-  //     cardContent.push({ text: `Consulta: ${item.tipo}`, style: 'card' });
-  //     cardContent.push({ text: `Altura: ${item.historiaClinica?.altura}`, style: 'card' });
-  //     cardContent.push({ text: `Peso: ${item.historiaClinica?.peso}`, style: 'card' });
-  //     cardContent.push({ text: `Temperatura: ${item.historiaClinica?.temperatura}°C`, style: 'card' });
-  //     cardContent.push({ text: `Presión: ${item.historiaClinica?.presionMax} / ${item.historiaClinica?.presionMin}`, style: 'card' });
+      cardContent.push({ text: `Fecha: ${this.datePipe.transform(item.fecha, 'd/M HH:mm', '-0300')}`, style: 'card' });
+      cardContent.push({ text: `Especialista: ${item.nombreEspecialista}`, style: 'card' });
+      cardContent.push({ text: `Consulta: ${item.tipo}`, style: 'card' });
+      cardContent.push({ text: `Altura: ${item.historiaClinica?.altura}`, style: 'card' });
+      cardContent.push({ text: `Peso: ${item.historiaClinica?.peso}`, style: 'card' });
+      cardContent.push({ text: `Temperatura: ${item.historiaClinica?.temperatura}°C`, style: 'card' });
+      cardContent.push({ text: `Presión: ${item.historiaClinica?.presionMax} / ${item.historiaClinica?.presionMin}`, style: 'card' });
 
-  //     if (this.validarDatoOpcional(item.historiaClinica?.dato1)) {
-  //       cardContent.push({ text: `${item.historiaClinica?.dato1?.clave}: ${item.historiaClinica?.dato1?.valor}`, style: 'card' });
-  //     }
+      if (this.validarDatoOpcional(item.historiaClinica?.dato1)) {
+        cardContent.push({ text: `${item.historiaClinica?.dato1?.clave}: ${item.historiaClinica?.dato1?.valor}`, style: 'card' });
+      }
       
-  //     if (this.validarDatoOpcional(item.historiaClinica?.dato2)) {
-  //       cardContent.push({ text: `${item.historiaClinica?.dato2?.clave}: ${item.historiaClinica?.dato2?.valor}`, style: 'card' });
-  //     }
+      if (this.validarDatoOpcional(item.historiaClinica?.dato2)) {
+        cardContent.push({ text: `${item.historiaClinica?.dato2?.clave}: ${item.historiaClinica?.dato2?.valor}`, style: 'card' });
+      }
       
-  //     if (this.validarDatoOpcional(item.historiaClinica?.dato3)) {
-  //       cardContent.push({ text: `${item.historiaClinica?.dato3?.clave}: ${item.historiaClinica?.dato3?.valor}`, style: 'card' });
-  //     }
-  //     cardContent.push({ text: '------------------------------------', style: 'separator' });
-  //     return cardContent;
-  //   });
+      if (this.validarDatoOpcional(item.historiaClinica?.dato3)) {
+        cardContent.push({ text: `${item.historiaClinica?.dato3?.clave}: ${item.historiaClinica?.dato3?.valor}`, style: 'card' });
+      }
+      cardContent.push({ text: '------------------------------------', style: 'separator' });
+      return cardContent;
+    });
     
-  //   const flattenedCardItems = cardItems.reduce((result, cardContent) => {
-  //     return result.concat(cardContent);
-  //   }, []);
+    const flattenedCardItems = cardItems.reduce((result, cardContent) => {
+      return result.concat(cardContent);
+    }, []);
     
-  //   const imagePath = "../../../assets/favicon.png";
-  //   this.encodeImageToBase64(imagePath)
-  //         .then((base64Image) => {
-  //           const docDefinition: TDocumentDefinitions = {
-  //             content: [
-  //               { image: base64Image, width: 50, height: 50 },
-  //               { text: "Historia Clinica " + this.especialidadSeleccionada + ": " + this._paciente?.nombre + " " + this._paciente?.apellido, style: 'header' },
-  //               { text: "Fecha Emision: " + this.datePipe.transform(new Date(), 'd/M/YYYY HH:mm', '-0300')+" hs", style: 'header' },
-  //               { text: '------------------------------------', style: 'separator' },
-  //               ...flattenedCardItems,
-  //             ],
-  //             styles: {
-  //               header: {
-  //                 fontSize: 16,
-  //                 bold: true,
-  //                 alignment: 'center',
-  //                 margin: [0, 10, 0, 10]
-  //               },
-  //               separator: {
-  //                 fontSize: 10,
-  //                 alignment: 'center',
-  //                 margin: [0, 5, 0, 5]
-  //               },
-  //               card: {
-  //                 fontSize: 14,
-  //                 margin: [20, 5, 0, 5]
-  //               }
-  //             }
-  //           };
-  //           const fileName = 'historia-clinica-' + (this.especialidadSeleccionada !== "" ? this.especialidadSeleccionada + "-" : "") + this._paciente?.nombre + "-" + this._paciente?.apellido;
-  //           pdfMake.createPdf(docDefinition).download(fileName);
-  //         })
-  //         .catch((error) => {
-  //           console.error('Error encoding image:', error);
-  //         });
-  // }
+    const imagePath = "../../../assets/favicon.png";
+    this.encodeImageToBase64(imagePath)
+          .then((base64Image) => {
+            const docDefinition: TDocumentDefinitions = {
+              content: [
+                { image: base64Image, width: 50, height: 50 },
+                { text: "Historia Clinica " + this.especialidadSeleccionada + ": " + this._paciente?.nombre + " " + this._paciente?.apellido, style: 'header' },
+                { text: "Fecha Emision: " + this.datePipe.transform(new Date(), 'd/M/YYYY HH:mm', '-0300')+" hs", style: 'header' },
+                { text: '------------------------------------', style: 'separator' },
+                ...flattenedCardItems,
+              ],
+              styles: {
+                header: {
+                  fontSize: 16,
+                  bold: true,
+                  alignment: 'center',
+                  margin: [0, 10, 0, 10]
+                },
+                separator: {
+                  fontSize: 10,
+                  alignment: 'center',
+                  margin: [0, 5, 0, 5]
+                },
+                card: {
+                  fontSize: 14,
+                  margin: [20, 5, 0, 5]
+                }
+              }
+            };
+            const fileName = 'historia-clinica-' + (this.especialidadSeleccionada !== "" ? this.especialidadSeleccionada + "-" : "") + this._paciente?.nombre + "-" + this._paciente?.apellido;
+            pdfMake.createPdf(docDefinition).download(fileName);
+            pdfMake.createPdf(docDefinition, undefined, undefined, pdfFonts.pdfMake.vfs).open();
+          })
+          .catch((error) => {
+            console.error('Error encoding image:', error);
+          });
+  }
 
   private filtrarPorEspecialidad(nombre: string){
     if(nombre == ""){

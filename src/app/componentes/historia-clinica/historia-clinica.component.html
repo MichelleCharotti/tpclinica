@@ -11,9 +11,10 @@
             </button>
         </div>
     </div>
-    <!-- <button class="descargar" (click)="descargarHistoria()">Descargar Historia Clinica</button> -->
+    <button class="descargar" (click)="descargarHistoria()">Descargar Historia Clinica</button>
 
 </div>
+
 <div class="historia" *ngFor="let item of turnos">
     <p><strong>Fecha: </strong>{{item.fecha | date : 'd/M HH:mm' : "-0300"}}</p>
     <p><strong>Especialista: </strong>{{item.nombreEspecialista}}</p>
