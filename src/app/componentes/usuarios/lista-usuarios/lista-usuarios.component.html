@@ -15,8 +15,8 @@
     <div  *ngIf="item.imagen1">
         <img [src]="item.imagen1" alt="foto perfil">
     </div>
-    <p>{{item.nombre}} &nbsp;</p>
-    <p>{{item.apellido}}</p>      
+    <p>{{item | nombreCompleto}} &nbsp;</p>
+    <!-- <p>{{item.apellido}}</p>       -->
     </button>
 
 </div>

@@ -5,11 +5,12 @@ import { BaseDatosService } from '../../../servicios/base-datos.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { ClickAfueraDirective } from '../../../directiva/click-afuera.directive';
+import { NombreCompletoPipe } from '../../../pipe/nombre-completo.pipe';
 
 @Component({
   selector: 'app-lista-usuarios',
   standalone: true,
-  imports: [ RouterModule, CommonModule, ClickAfueraDirective],
+  imports: [ RouterModule, CommonModule, ClickAfueraDirective,NombreCompletoPipe],
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.scss'
 })
