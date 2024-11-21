@@ -18,7 +18,7 @@ organización y administración de la clínica. “
 ### Registro
 Permite generar un nuevo usuario de tipo paciente o especialista
 
-![alt text](image-1.png)
+![alt text](image-21.png)
 ![alt text](image-2.png)
 
 ### Login
